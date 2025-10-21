@@ -1,4 +1,4 @@
-const createGameBoard = (function(){
+const gameBoard = (function(){
      const gameBoard = {
           a : ["x", "o", "x"],
           b : ["", "o", ""],
