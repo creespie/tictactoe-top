@@ -31,7 +31,7 @@ const gameBoard = (function(){
           //vertical wins
           for(let i = 0; i < 3; i++){
                if(gameBoard.a[i] != "" && gameBoard.a[i] === gameBoard.b[i] && gameBoard.b[i] === gameBoard.c[i]){
-                    winner = gameBoard.c[1];
+                    winner = gameBoard.c[i];
                }
           }
           //horizontal wins
