@@ -1,15 +1,22 @@
 const gameBoard = (function(){
      let turn = 0;
-     let a = ["x", "", ""];
-     let b = ["", "x", "o"];
-     let c = ["x", "", "x"];
+     let a = ["", "", ""];
+     let b = ["", "", ""];
+     let c = ["", "", ""];
 
-     function addMarker (player, letter, index){
+     function addMarker (letter, index){
           if(letter[index] == ""){
-               letter[index] = "" + player + "";
+               if(gameBoard.turn % 2 == 0){
+                    player = "x"
+               }else{
+                    player = "o"
+               }
+               letter[index] = player;
                gameBoard.turn++;
-               if(gameBoard.turn > 5){gameBoard.checkWin()}
+               
+               
           }
+          //gameBoard.checkWin();
      };
      
      function restart(){
@@ -20,40 +27,35 @@ const gameBoard = (function(){
      }
 
      function checkWin(){
+          let winner = "";
           //vertical wins
           for(let i = 0; i < 3; i++){
                if(gameBoard.a[i] != "" && gameBoard.a[i] === gameBoard.b[i] && gameBoard.b[i] === gameBoard.c[i]){
-                    let winner = gameBoard.c[1];
-                    gameBoard.restart();
-                    return "player " + winner + " won!"
-          }
+                    winner = gameBoard.c[1];
+               }
           }
           //horizontal wins
           if(gameBoard.a[0] != "" && gameBoard.a.every(value => value == gameBoard.a[0])){
-               let winner = gameBoard.a[0];
-               gameBoard.restart();
-               return "player " + winner + " won!"
+               winner = gameBoard.a[0];
           }
           if(gameBoard.b[0] != "" && gameBoard.b.every(value => value == gameBoard.b[0])){
-               let winner = gameBoard.b[0];
-               gameBoard.restart();
-               return "player " + winner + " won!"
+               winner = gameBoard.b[0];
           }
           if(gameBoard.c[0] != "" && gameBoard.c.every(value => value == gameBoard.c[0])){
-               let winner = gameBoard.c[0];
-               gameBoard.restart();
-               return "player " + winner + " won!"
+               winner = gameBoard.c[0];  
           }
           //diagonal wins
           if(gameBoard.a[0] != "" && gameBoard.a[0] === gameBoard.b[1] && gameBoard.b[1] === gameBoard.c[2]){
-                    let winner = gameBoard.c[2];
-                    gameBoard.restart();
-                    return "player " + winner + " won!"
+                    winner = gameBoard.c[2];
           }
           if(gameBoard.a[2] != "" && gameBoard.a[2] === gameBoard.b[1] && gameBoard.b[1] === gameBoard.c[0]){
-                    let winner = gameBoard.c[0];
-                    gameBoard.restart();
-                    return "player " + winner + " won!"
+                    winner = gameBoard.c[0];
+          }
+          if(winner != ""){
+               let announce = winner;
+               winner = "";
+               gameBoard.restart();
+               return "player " + announce + " won!"
           }
      };
 
