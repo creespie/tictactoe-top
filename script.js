@@ -1,9 +1,13 @@
 const gameBoard = (function(){
-     const gameBoard = {
-          a : ["x", "o", "x"],
-          b : ["", "o", ""],
-          c :["", "", "o"],
-     }
-     return gameBoard;
+     
+     let a = ["x", "o", "x"];
+     let b = ["", "o", ""];
+     let c = ["", "", "o"];
+
+     function addMarker (player, letter, index){
+         letter[index] = "" + player + "";
+     };
+     
+     return {a, b, c, addMarker}
 
 })();
