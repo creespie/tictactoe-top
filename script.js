@@ -5,9 +5,17 @@ const gameBoard = (function(){
      let c = ["", "", "o"];
 
      function addMarker (player, letter, index){
-         letter[index] = "" + player + "";
+          if(letter[index] == ""){
+               letter[index] = "" + player + "";
+          }
      };
      
-     return {a, b, c, addMarker}
+     function restart(){
+          gameBoard.a = ["", "", ""];
+          gameBoard.b = ["", "", ""];
+          gameBoard.c = ["", "", ""];
+     }
+
+     return {a, b, c, addMarker, restart}
 
 })();
