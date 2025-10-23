@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="main">
@@ -11,28 +12,22 @@
             <h3>Tic Tac Toe</h3>
             <div class="turnDisplay">It's x turn!</div>
         </div>
-        <div>
+        <div class="center">
             <div class="scoreX">X score is: 1</div>
             <div class="table">
-                <div class="row">
-                    <button class="rowA" id="1a"></button>
-                    <button class="rowA" id="2a"></button>
-                    <button class="rowA" id="3a"></button>
-                </div>
-                <div class="row">
-                    <button class="rowB" id="1b"></button>
-                    <button class="rowB" id="2b"></button>
-                    <button class="rowB" id="3b"></button>
-                </div>
-                <div class="row">
-                    <button class="rowC" id="1c"></button>
-                    <button class="rowC" id="2c"></button>
-                    <button class="rowC" id="3c"></button>
-                </div>
+                <button class="rowA" id="1a"></button>
+                <button class="rowA" id="2a"></button>
+                <button class="rowA" id="3a"></button>
+                <button class="rowB" id="1b"></button>
+                <button class="rowB" id="2b"></button>
+                <button class="rowB" id="3b"></button>
+                <button class="rowC" id="1c"></button>
+                <button class="rowC" id="2c"></button>
+                <button class="rowC" id="3c"></button>
             </div>
             <div class="scoreO"> O score is: 0</div>
         </div>
-        <div>
+        <div class="bottom">
             <button class="reset">reset game</button>
             <div class="winner">
                 x won!
