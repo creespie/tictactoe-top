@@ -4,10 +4,10 @@ const gameBoard = (function(){
      let b = ["", "", ""];
      let c = ["", "", ""];
 
-     function startGame(player1, player2, winner){
-          displayManager.playerDisplay(player1, player2, winner);
-          
-
+     function startGame(player1, player2){
+          // displayManager.player1 = player1;
+          // displayManager.player2 = player2;
+          displayManager.playerDisplay(gameBoard.winner);
      }
 
      function addMarker (letter, index){
@@ -19,9 +19,10 @@ const gameBoard = (function(){
                }
                letter[index] = player;
                displayManager.markerDisplay()
-               displayManager.playerDisplay(displayManager.player1, displayManager.player2, gameBoard.winner)
+               
                gameBoard.turn++;
                displayManager.turn++;
+               displayManager.playerDisplay(gameBoard.winner)
                gameBoard.checkWin();
           } 
      };
@@ -47,7 +48,7 @@ const gameBoard = (function(){
                const winnerAnnounce = document.querySelector(".winner");
                winnerAnnounce.textContent = "it's a draw!";
           };
-          
+
           //vertical wins
           for(let i = 0; i < 3; i++){
                if(gameBoard.a[i] != "" && gameBoard.a[i] === gameBoard.b[i] && gameBoard.b[i] === gameBoard.c[i]){
@@ -74,10 +75,10 @@ const gameBoard = (function(){
           if(gameBoard.winner != ""){
                if(gameBoard.winner == "x"){
                     gameBoard.score1++;
-                    displayManager.playerDisplay(displayManager.player1, displayManager.player2, gameBoard.winner)
+                    displayManager.playerDisplay(gameBoard.winner)
                }else{
                     gameBoard.score2++;
-                    displayManager.playerDisplay(displayManager.player1, displayManager.player2, gameBoard.winner)
+                    displayManager.playerDisplay(gameBoard.winner)
                }
                gameBoard.winner = "";
                gameBoard.restart();
@@ -104,27 +105,29 @@ const displayManager = (function(){
           }
      };
 
-     let turn = 0;
-     function playerDisplay(player1, player2, winner){
+     let turn = 2;
+     function playerDisplay(winner){
           //score
           const score1 = document.querySelector(".scoreX");
           const score2 = document.querySelector(".scoreO");
-          score1.textContent = player1 + " score is: " + gameBoard.score1;
-          score2.textContent = player2 + " score is: " + gameBoard.score2;
+          score1.textContent = displayManager.player1 + " score is: " + gameBoard.score1;
+          score2.textContent = displayManager.player2 + " score is: " + gameBoard.score2;
 
 
           //turn
           const playerLine = document.querySelector(".turnDisplay")
-          if(turn % 2 == 0){
-               playerLine.textContent = "It's " + player1 + " turn!";
+          if(displayManager.turn % 2 == 0){
+               playerLine.textContent = "It's " + displayManager.player1 + " turn!";
           }else{
-               playerLine.textContent = "It's " + player2 + " turn!";
+               playerLine.textContent = "It's " + displayManager.player2 + " turn!";
           }
 
           //winner
           const winnerAnnounce = document.querySelector(".winner");
-          if(winner != undefined){
+          if(winner != ""){
                winnerAnnounce.textContent = winner + " won!"
+          }else{
+               winnerAnnounce.textContent = "";
           }
      }
 
@@ -133,10 +136,13 @@ const displayManager = (function(){
                grid[i].addEventListener("click", (item) => {
                     let id = item.target.id.split("");
                     gameBoard.addMarker(gameBoard[id[1]], id[0] - 1)});
-                    displayManager.playerDisplay();
+                    displayManager.playerDisplay(gameBoard.winner)
           }
      }
 
+     let player1 = "";
+     let player2 = "";
+    
      function nameSelection(){
           const start = document.querySelector(".start")
           const form = document.querySelector(".startForm")
@@ -145,13 +151,12 @@ const displayManager = (function(){
 
           form.addEventListener("submit", (e) => {
                e.preventDefault(); 
-               const player1 = document.querySelector("#player1").value;
-               const player2 = document.querySelector("#player2").value;
-               gameBoard.startGame(player1, player2, gameBoard.winner)
+               displayManager.player1 = document.querySelector("#player1").value;
+               displayManager.player2 = document.querySelector("#player2").value;
+               gameBoard.startGame(player1, player2)
                start.close();
-               return player1, player2;
-          })
-
+          });
+          
      }
 
      return {markerDisplay, playerDisplay, markerRegister, nameSelection, turn, player1, player2}
