@@ -7,13 +7,23 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <dialog class="start">
+        <form action="" class="startForm">
+            <h2>Player names:</h2>
+            <label for="player1">Player 1:</label>
+            <input type="text" id="player1" placeholder="Jhon">
+            <label for="player2">Player 2:</label>
+            <input type="text" id="player2" placeholder="Jhon">
+            <button type="submit">Confirm</button>
+        </form>
+    </dialog>
     <div class="main">
         <div class="titleTurn">
             <h3>Tic Tac Toe</h3>
-            <div class="turnDisplay">It's x turn!</div>
+            <div class="turnDisplay"></div>
         </div>
         <div class="center">
-            <div class="scoreX">X score is: 1</div>
+            <div class="scoreX"></div>
             <div class="table">
                 <button class="rowA" id="1a"></button>
                 <button class="rowA" id="2a"></button>
@@ -25,11 +35,10 @@
                 <button class="rowC" id="2c"></button>
                 <button class="rowC" id="3c"></button>
             </div>
-            <div class="scoreO"> O score is: 0</div>
+            <div class="scoreO"> </div>
         </div>
         <div class="bottom">
             <div class="winner">
-                x won!
             </div>
             <button class="reset">reset game</button>
             
