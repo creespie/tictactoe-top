@@ -74,9 +74,22 @@ html, body{
     
 }
 
+.titleTurn{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+}
+
+.center{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
 .table{
     display: grid;
-   grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
 }
 
@@ -89,3 +102,13 @@ html, body{
     
 }
 
+.bottom{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 5px;
+}
+
+.winner{
+    text-align: center;
+}
