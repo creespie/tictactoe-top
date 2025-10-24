@@ -12,12 +12,12 @@ const gameBoard = (function(){
                     player = "o"
                }
                letter[index] = player;
+               displayManager.markerDisplay()
+               displayManager.playerDisplay(player)
                gameBoard.turn++;
-               
-               
-          }
-          displayManager.display()
-          gameBoard.checkWin();
+               displayManager.turn++;
+               gameBoard.checkWin();
+          } 
      };
      
      function restart(){
@@ -25,6 +25,7 @@ const gameBoard = (function(){
           gameBoard.b = ["", "", ""];
           gameBoard.c = ["", "", ""];
           gameBoard.turn = 0;
+          displayManager.turn = 0;
      }
 
      function checkWin(){
@@ -67,7 +68,7 @@ const gameBoard = (function(){
 const grid = document.querySelectorAll(".rowA, .rowB, .rowC");
 
 const displayManager = (function(){
-     function display(){
+     function markerDisplay(){
           for(let i = 0; i <9; i++){
                if(i<3){
                     grid[i].textContent = gameBoard.a[i]
@@ -78,8 +79,22 @@ const displayManager = (function(){
                }
           }
      };
+     let turn = 0;
+     function playerDisplay(){
+          const playerLine = document.querySelector(".turnDisplay")
+          playerLine.textContent = "It's " + player + " turn!";
+     }
 
+     function markerRegister(){
+          for(let i = 0; i <9; i++){
+               grid[i].addEventListener("click", (item) => {
+                    let id = item.target.id.split("");
+                    gameBoard.addMarker(gameBoard[id[1]], id[0] - 1)});
+                    displayManager.playerDisplay();
+          }
+     }
 
-
-     return {display}
+     return {markerDisplay, playerDisplay, markerRegister, turn}
 })();
+
+displayManager.markerRegister();
