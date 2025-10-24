@@ -36,6 +36,19 @@ const gameBoard = (function(){
           displayManager.playerDisplay(displayManager.player1, displayManager.player2, gameBoard.winner)
      }
 
+     function reset(){
+          displayManager.nameSelection();
+          gameBoard.restart();
+          gameBoard.score1 = 0;
+          gameBoard.score2 = 0;
+     }
+
+     function clear(){
+          gameBoard.restart();
+          gameBoard.score1 = 0;
+          gameBoard.score2 = 0;
+     }
+
      let score1 = 0;
      let score2 = 0;
      let winner = "";
@@ -85,12 +98,15 @@ const gameBoard = (function(){
           }
      };
 
-     return {a, b, c, turn, score1, score2, winner, addMarker, restart, checkWin, startGame}
+     return {a, b, c, turn, score1, score2, winner, addMarker, restart, checkWin, startGame, reset, clear}
 
 })();
 
 
 const grid = document.querySelectorAll(".rowA, .rowB, .rowC");
+const reset = document.querySelector(".reset");
+const clear = document.querySelector(".clear")
+
 
 const displayManager = (function(){
      function markerDisplay(){
@@ -138,6 +154,8 @@ const displayManager = (function(){
                     gameBoard.addMarker(gameBoard[id[1]], id[0] - 1)});
                     displayManager.playerDisplay(gameBoard.winner)
           }
+          reset.addEventListener( "click", () => {gameBoard.reset()});
+          clear.addEventListener( "click", () => {gameBoard.clear(); displayManager.playerDisplay(gameBoard.winner)});
      }
 
      let player1 = "";
