@@ -16,7 +16,8 @@ const gameBoard = (function(){
                
                
           }
-          //gameBoard.checkWin();
+          displayManager.display()
+          gameBoard.checkWin();
      };
      
      function restart(){
@@ -61,4 +62,24 @@ const gameBoard = (function(){
 
      return {a, b, c, turn, addMarker, restart, checkWin}
 
+})();
+
+const grid = document.querySelectorAll(".rowA, .rowB, .rowC");
+
+const displayManager = (function(){
+     function display(){
+          for(let i = 0; i <9; i++){
+               if(i<3){
+                    grid[i].textContent = gameBoard.a[i]
+               }else if(i>2 && i<6){
+                    grid[i].textContent = gameBoard.b[i-3]
+               }else{
+                    grid[i].textContent = gameBoard.c[i-6]
+               }
+          }
+     };
+
+
+
+     return {display}
 })();
