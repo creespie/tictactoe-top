@@ -127,3 +127,25 @@ html, body{
 .winner{
     text-align: center;
 }
+
+dialog:modal{
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    align-self: center;
+    border-style: none;
+    border-radius: 20px;
+    padding: 5vh;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    border-style: none;
+    border-radius: 20px;
+}
+
+form > button{
+    margin-top: 15px;
+}
