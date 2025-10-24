@@ -41,12 +41,14 @@ const gameBoard = (function(){
           gameBoard.restart();
           gameBoard.score1 = 0;
           gameBoard.score2 = 0;
+          displayManager.markerDisplay();
      }
 
      function clear(){
           gameBoard.restart();
           gameBoard.score1 = 0;
           gameBoard.score2 = 0;
+          displayManager.markerDisplay();
      }
 
      let score1 = 0;
@@ -146,7 +148,6 @@ const displayManager = (function(){
                winnerAnnounce.textContent = "";
           }
 
-          displayManager.markerDisplay();
      }
 
      function markerRegister(){
