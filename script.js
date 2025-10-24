@@ -33,7 +33,7 @@ const gameBoard = (function(){
           gameBoard.c = ["", "", ""];
           gameBoard.turn = 0;
           displayManager.turn = 0;
-          displayManager.playerDisplay(displayManager.player1, displayManager.player2, gameBoard.winner)
+          displayManager.playerDisplay(gameBoard.winner)
      }
 
      function reset(){
@@ -145,6 +145,8 @@ const displayManager = (function(){
           }else{
                winnerAnnounce.textContent = "";
           }
+
+          displayManager.markerDisplay();
      }
 
      function markerRegister(){
