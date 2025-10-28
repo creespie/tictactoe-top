@@ -32,8 +32,6 @@ const gameBoard = (function(){
           gameBoard.c = ["", "", ""];
           gameBoard.turn = 0;
           displayManager.turn = 0;
-          gameBoard.winner = "";
-          displayManager.playerDisplay(gameBoard.winner)
      }
 
      function reset(){
@@ -49,6 +47,8 @@ const gameBoard = (function(){
           gameBoard.score1 = 0;
           gameBoard.score2 = 0;
           displayManager.markerDisplay();
+          gameBoard.checkWin();
+
      }
 
      let score1 = 0;
@@ -57,6 +57,11 @@ const gameBoard = (function(){
      
 
      function checkWin(){
+          //reset gameBoard winner
+          if(gameBoard.turn == 1 || gameBoard.turn == 0){
+               gameBoard.winner = "";
+               displayManager.playerDisplay(gameBoard.winner)
+          }
           //vertical wins
           for(let i = 0; i < 3; i++){
                if(gameBoard.a[i] != "" && gameBoard.a[i] === gameBoard.b[i] && gameBoard.b[i] === gameBoard.c[i]){
