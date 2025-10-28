@@ -22,7 +22,6 @@ const gameBoard = (function(){
                
                gameBoard.turn++;
                displayManager.turn++;
-               displayManager.playerDisplay(gameBoard.winner)
                gameBoard.checkWin();
           } 
      };
@@ -33,6 +32,7 @@ const gameBoard = (function(){
           gameBoard.c = ["", "", ""];
           gameBoard.turn = 0;
           displayManager.turn = 0;
+          gameBoard.winner = "";
           displayManager.playerDisplay(gameBoard.winner)
      }
 
@@ -57,13 +57,6 @@ const gameBoard = (function(){
      
 
      function checkWin(){
-          //draws
-          if(gameBoard.turn == 9){
-               gameBoard.restart();
-               const winnerAnnounce = document.querySelector(".winner");
-               winnerAnnounce.textContent = "it's a draw!";
-          };
-
           //vertical wins
           for(let i = 0; i < 3; i++){
                if(gameBoard.a[i] != "" && gameBoard.a[i] === gameBoard.b[i] && gameBoard.b[i] === gameBoard.c[i]){
@@ -86,18 +79,27 @@ const gameBoard = (function(){
           }
           if(gameBoard.a[2] != "" && gameBoard.a[2] === gameBoard.b[1] && gameBoard.b[1] === gameBoard.c[0]){
                     gameBoard.winner = gameBoard.c[0];
-          }
+          };
+          
           if(gameBoard.winner != ""){
                if(gameBoard.winner == "x"){
                     gameBoard.score1++;
-                    displayManager.playerDisplay(gameBoard.winner)
+                    gameBoard.winner = displayManager.player1;
+                    displayManager.playerDisplay(gameBoard.winner);
                }else{
                     gameBoard.score2++;
+                    gameBoard.winner = displayManager.player2;
                     displayManager.playerDisplay(gameBoard.winner)
                }
-               gameBoard.winner = "";
                gameBoard.restart();
-          }
+          };
+
+           //draws
+          if(gameBoard.turn == 9){
+               gameBoard.restart();
+               const winnerAnnounce = document.querySelector(".winner");
+               winnerAnnounce.textContent = "it's a draw!";
+          };
      };
 
      return {a, b, c, turn, score1, score2, winner, addMarker, restart, checkWin, startGame, reset, clear}
